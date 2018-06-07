@@ -9,9 +9,10 @@
                  active-text-color="#409EFF"
                  unique-opened
                  router
+                 :default-active="onRoutes"
         >
             <div class="menu-color" style="text-align: center;padding:  10px 0;">
-                <!--//在线生成的艺术字有点位置问题 卡字有些靠上了 我要处理一下-->
+                <!--//在线生成的艺术字有点位置问题 字有些靠上了 我要处理一下-->
                 <span class="img_logo" :class="isCollapse==false?'logo_big':'logo_small'" >
                     <img class="img_logo":class="isCollapse==false?'logo_big':'logo_small'" :src="isCollapse==false?$store.state.app.logoImgUrl:$store.state.app.logoImgSmallUrl">
                 </span>
@@ -67,6 +68,11 @@
             },
             menuList(){
                 return this.$store.getters.getMenuList;
+            },
+            //此属性用于获取 菜单的选中状态
+            onRoutes(){
+                //fixme 当此处存在多级菜单 路由是 会存在问题 但多级路由尚未定义
+                return this.$route.path.replace('/','');
             }
         },
         components: {
